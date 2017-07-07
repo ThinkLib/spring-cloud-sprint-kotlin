@@ -30,7 +30,15 @@ class ConnectionServiceApplication(val directFlightConnectionRepository : Direct
                         Instant.now().plus(1, ChronoUnit.HOURS)
                 )
         )
-        directFlightConnectionRepository.save(DirectFlightConnection("Lufthansa", "HAM", "STR", Instant.now(), Instant.now().plus(2, ChronoUnit.HOURS))
+        directFlightConnectionRepository.save(
+                DirectFlightConnection(
+                        "Lufthansa",
+                        "HAM",
+                        "STR",
+                        Instant.now(),
+                        Instant.now().plus(2, ChronoUnit.HOURS)
+                )
+        )
    }
 
     @RequestMapping("clear")
