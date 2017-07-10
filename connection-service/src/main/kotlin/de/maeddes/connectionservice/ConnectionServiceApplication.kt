@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.mongodb.config.EnableMongoAuditing
 import org.springframework.data.mongodb.repository.MongoRepository
-import org.springframework.data.repository.CrudRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -24,8 +23,8 @@ class ConnectionServiceApplication(val directFlightConnectionRepository : Direct
         directFlightConnectionRepository.save(
                 DirectFlightConnection(
                         "Lufthansa",
-                        "STR",
-                        "FRA",
+                        "Stuttgart",
+                        "Frankfurt",
                         Instant.now(),
                         Instant.now().plus(1, ChronoUnit.HOURS)
                 )
@@ -33,8 +32,8 @@ class ConnectionServiceApplication(val directFlightConnectionRepository : Direct
         directFlightConnectionRepository.save(
                 DirectFlightConnection(
                         "Lufthansa",
-                        "HAM",
-                        "STR",
+                        "Hamburg",
+                        "Stuttgart",
                         Instant.now(),
                         Instant.now().plus(2, ChronoUnit.HOURS)
                 )
@@ -53,7 +52,7 @@ fun main(args: Array<String>) {
 }
 
 @Entity
-class DirectFlightConnection(
+data class DirectFlightConnection(
         var airline: String,
         var departureAirport: String,
         var destinationAirport: String,
@@ -63,7 +62,7 @@ class DirectFlightConnection(
         val id : String? = null,
         @CreatedDate
         var createdDate: Instant? = null
-        )
+)
 
 @RepositoryRestResource(collectionResourceRel = "directFlightConnections", path = "direct-flight-connections")
 interface DirectFlightConnectionRepository : MongoRepository<DirectFlightConnection, String>

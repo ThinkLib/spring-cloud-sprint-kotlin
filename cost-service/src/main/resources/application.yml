@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: direct-flight-cost-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?user=postgres&password=rootpasswd
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+server:
+  port: 8085
+
